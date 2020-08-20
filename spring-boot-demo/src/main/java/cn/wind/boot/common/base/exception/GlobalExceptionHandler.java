@@ -85,6 +85,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseData handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.error("参数解析失败");
+        log.error(e.getMessage());
         return new ResponseData.Builder().fail("参数解析失败").build();
     }
 

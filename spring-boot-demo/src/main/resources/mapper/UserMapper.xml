@@ -16,10 +16,11 @@
 			username,
 			id_card,
 			sex,
-			phone 
+			phone
 		FROM
 			system_user 
 		WHERE
-			`status` = 1
+			`status` = #{status}
     </select>
+	
 </mapper>

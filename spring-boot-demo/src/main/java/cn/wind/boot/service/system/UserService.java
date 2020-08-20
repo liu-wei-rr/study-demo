@@ -1,7 +1,9 @@
 package cn.wind.boot.service.system;
 
 import cn.wind.boot.db.domain.system.User;
+import cn.wind.boot.db.domain.system.request.UserRequest;
 import cn.wind.boot.db.domain.system.response.UserResponse;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
 
@@ -25,4 +27,11 @@ public interface UserService {
      * @return
      */
     List<UserResponse> getEffectiveUserList();
+
+    /**
+     * 分页查询
+     * 
+     * @return
+     */
+    IPage<UserResponse> getByPage(UserRequest userRequest);
 }
