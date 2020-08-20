@@ -1,8 +1,12 @@
 package cn.wind.boot.db.domain.system;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,10 +24,14 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 2596059579817014810L;
     
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
+    
+    @NotBlank(message = "用户名不能为空！")
+    @Length(max = 20, message = "用户名长度不超过20！")
     private String username;
 
+    @NotBlank(message = "密码不能为空！")
     private String password;
 
     private String idCard;

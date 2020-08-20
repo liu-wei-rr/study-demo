@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserService {
 
     /**
-     * 根据id查询
+     * 根据 id 查询
      *
      * @param id
      * @return
@@ -22,7 +22,22 @@ public interface UserService {
     User getById(Long id);
 
     /**
-     * 获取有效状态的用户基本信息
+     * 新增
+     */
+    int insert(User user);
+
+    /**
+     * 根据 id 修改
+     */
+    int update(User user);
+
+    /**
+     * 根据 id 删除
+     */
+    int delete(Long id);
+
+    /**
+     * 获取全量用户信息列表
      * 
      * @return
      */

@@ -2,6 +2,7 @@ package cn.wind.boot.controller.system;
 
 import cn.wind.boot.common.base.controller.BaseController;
 import cn.wind.boot.common.base.response.ResponseData;
+import cn.wind.boot.db.domain.system.User;
 import cn.wind.boot.db.domain.system.request.UserRequest;
 import cn.wind.boot.db.domain.system.response.UserResponse;
 import cn.wind.boot.service.system.UserService;
@@ -11,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * @author liuw
@@ -31,7 +34,13 @@ public class UserController extends BaseController {
         return success(userService.getById(id));
     }
 
-    @ApiOperation(value = "获取有效用户信息列表")
+    @ApiOperation(value = "新增用户信息")
+    @PostMapping("/add")
+    public ResponseData add(@RequestBody @Valid User user) {
+        return success(userService.insert(user));
+    }
+
+    @ApiOperation(value = "获取全量用户信息列表")
     @GetMapping("/effective")
     public ResponseData getEffectiveUserList() {
         return success(userService.getEffectiveUserList());
