@@ -9,9 +9,28 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     
+    <!-- 版本 -->
+    <properties>
+        <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
+    </properties>
+    
+    <!-- 依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <!--不使用parent方式进行依赖,需要scope和type设置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <!-- 模块 -->
     <modules>
         <module>spring-boot-demo</module>
     </modules>
-
-
+    
 </project>

@@ -1,0 +1,32 @@
+# server port
+server:
+  port: 9020
+  servlet:
+    context-path: /
+    
+spring:
+  # base info
+  application:
+    name: spring-boot-demo
+
+  # datasource config
+  datasource:
+    url: jdbc:mysql://101.201.254.58:3306/management?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1qazXSW@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # security config 【spring boot 需要引入对应依赖生效】
+  security:
+    user:
+      name: user
+      password: 123456
+
+  # redis config
+  redis:
+    host: 101.201.254.58
+    port: 6379
+    password: p@ssw0rd
+
+  cache:
+    type: redis
