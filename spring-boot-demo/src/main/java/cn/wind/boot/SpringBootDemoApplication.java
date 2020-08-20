@@ -18,11 +18,7 @@ public class SpringBootDemoApplication {
     
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemoApplication.class, args);
-        log.info("================== SpringBootDemo ==================");
-        log.info("===============  （0田0）※=o大威天龙 =================");
-        log.info("=============== （⊙口⊙卍 }}}˜”世尊地藏 ===============");
-        log.info("=============== ｛（>A<）｝〃≈≈大罗法咒  ===============");
-        log.info("=============== ヽ(ˋДˊ)ノ卍卍卍般若诸佛 ===============");
+        log.info("=============== SpringBootDemo ヽ(ˋДˊ)ノ ===============");
     }
     
 }

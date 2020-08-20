@@ -48,14 +48,22 @@ public class BaseRequest implements Serializable {
     @ApiModelProperty(value = "排序方式", example = "ASC OR DESC")
     private String orderDir;
 
-
     public Integer getStartIndex() {
         // 传递是page的时候
-        if (page != null) {
+        if (null != page) {
             return this.pageSize * (this.page - 1);
         } else {
             return startIndex;
         }
     }
 
+    // 设置默认值
+    public Integer getPage() {
+        return page == null ? 1 : page;
+    }
+    
+    // 设置默认值
+    public Integer getPageSize() {
+        return pageSize == null ? 10 : pageSize;
+    }
 }

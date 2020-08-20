@@ -33,3 +33,11 @@ spring:
     
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
+#  开启日志
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# mybatis-plus 控制台日志
+logging:
+  level:
+    cn.wind.boot.db.mapper : debug
