@@ -30,4 +30,10 @@ public class UserController extends BaseController {
     public ResponseData getById(@PathVariable("id") Long id) {
         return success(userService.getById(id));
     }
+
+    @ApiOperation(value = "获取有效用户信息列表")
+    @GetMapping("/effective")
+    public ResponseData getEffectiveUserList() {
+        return success(userService.getEffectiveUserList());
+    }
 }

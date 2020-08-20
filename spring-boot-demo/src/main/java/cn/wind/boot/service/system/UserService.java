@@ -1,6 +1,9 @@
 package cn.wind.boot.service.system;
 
 import cn.wind.boot.db.domain.system.User;
+import cn.wind.boot.db.domain.system.response.UserResponse;
+
+import java.util.List;
 
 /**
  * @author liuw
@@ -15,4 +18,11 @@ public interface UserService {
      * @return
      */
     User getById(Long id);
+
+    /**
+     * 获取有效状态的用户基本信息
+     * 
+     * @return
+     */
+    List<UserResponse> getEffectiveUserList();
 }

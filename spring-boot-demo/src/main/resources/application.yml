@@ -30,3 +30,6 @@ spring:
 
   cache:
     type: redis
+    
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
