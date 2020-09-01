@@ -7,12 +7,16 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
- * @author zhshd
+ * @author liuw
  */
 @Configuration
 @Slf4j
 public class WebConfig extends WebMvcConfigurationSupport {
 
+    /**
+     * 解决跨域问题
+     * @param registry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

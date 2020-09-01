@@ -1,8 +1,8 @@
 package cn.wind.boot.service.system;
 
-import cn.wind.boot.db.domain.system.User;
-import cn.wind.boot.db.domain.system.request.UserRequest;
-import cn.wind.boot.db.domain.system.response.UserResponse;
+import cn.wind.boot.db.domain.system.SystemUser;
+import cn.wind.boot.db.domain.system.request.SystemUserRequest;
+import cn.wind.boot.db.domain.system.response.SystemUserResponse;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author liuw
  * @date 2020/8/20
  */
-public interface UserService {
+public interface SystemUserService {
 
     /**
      * 根据 id 查询
@@ -19,17 +19,17 @@ public interface UserService {
      * @param id
      * @return
      */
-    User getById(Long id);
+    SystemUser getById(Long id);
 
     /**
      * 新增
      */
-    int insert(User user);
+    int insert(SystemUser systemUser);
 
     /**
      * 根据 id 修改
      */
-    int update(User user);
+    int update(SystemUser systemUser);
 
     /**
      * 根据 id 删除
@@ -41,12 +41,12 @@ public interface UserService {
      * 
      * @return
      */
-    List<UserResponse> getEffectiveUserList();
+    List<SystemUserResponse> getEffectiveUserList();
 
     /**
      * 分页查询
      * 
      * @return
      */
-    IPage<UserResponse> getByPage(UserRequest userRequest);
+    IPage<SystemUserResponse> getByPage(SystemUserRequest systemUserRequest);
 }

@@ -6,13 +6,10 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author liuw
- * @date 2020/8/20
+ * @date 2020-08-26
  */
 @Data
 @NoArgsConstructor
-public class UserRequest extends BaseRequest {
-    
-    private String username;
-    
-    private String status;
+public class SystemLogRequest extends BaseRequest {
+
 }
