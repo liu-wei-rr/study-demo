@@ -1,8 +1,11 @@
 package cn.wind.boot.config;
 
+import cn.wind.boot.config.interceptor.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -14,7 +17,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class WebConfig extends WebMvcConfigurationSupport {
 
     /**
+     * 登录拦截器
+     * @return
+     */
+    @Bean
+    public LoginInterceptor loginInterceptor() {
+        return new LoginInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor());
+    }
+
+    /**
      * 解决跨域问题
+     *
      * @param registry
      */
     @Override

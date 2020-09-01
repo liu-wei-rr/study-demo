@@ -17,6 +17,7 @@ public interface SystemUserMapper extends BaseMapper<SystemUser> {
 
     /**
      * 根据状态查询
+     *
      * @param status
      * @return
      */
@@ -24,9 +25,18 @@ public interface SystemUserMapper extends BaseMapper<SystemUser> {
 
     /**
      * 根据状态分页查询
+     *
      * @param page
      * @param status
      * @return
      */
     IPage<SystemUserResponse> selectByStatus(Page<SystemUserResponse> page, @Param("status") String status);
+
+    /**
+     * 根据用户名查询
+     *
+     * @param username 用户名
+     * @return
+     */
+    SystemUser selectByUsername(String username);
 }

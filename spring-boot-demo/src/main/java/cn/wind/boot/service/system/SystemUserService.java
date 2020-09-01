@@ -49,4 +49,10 @@ public interface SystemUserService {
      * @return
      */
     IPage<SystemUserResponse> getByPage(SystemUserRequest systemUserRequest);
+
+    /**
+     * 根据用户名查询用户信息
+     */
+    SystemUser getByUsername(String username);
 }
+

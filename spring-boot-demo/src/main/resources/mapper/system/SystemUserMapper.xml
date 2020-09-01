@@ -22,5 +22,20 @@
 		WHERE
 			`status` = #{status}
     </select>
+
+	<select id="selectByUsername" resultType="cn.wind.boot.db.domain.system.SystemUser">
+		SELECT
+			username,
+			password,
+			id_card,
+			sex,
+			org_code,
+			phone
+		FROM
+			system_user 
+		WHERE
+			`status` = 1
+			and username = #{param1}
+    </select>
 	
 </mapper>

@@ -5,7 +5,6 @@ import cn.wind.boot.db.domain.system.request.SystemUserRequest;
 import cn.wind.boot.db.domain.system.response.SystemUserResponse;
 import cn.wind.boot.db.mapper.system.SystemUserMapper;
 import cn.wind.boot.service.system.SystemUserService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
@@ -53,20 +52,6 @@ public class SystemUserServiceImpl implements SystemUserService {
     public List<SystemUserResponse> getEffectiveUserList() {
         // 设置用户启用状态
         String status = "1";
-
-        /**
-         * 拼接条件查询
-         */
-        QueryWrapper<SystemUser> wrapper = new QueryWrapper<SystemUser>();
-        wrapper.eq("username", "admin");
-        wrapper.eq("password", "1");
-        wrapper.or(i -> i.eq("username", "Rose").eq("org_code","ORG1-2"));
-        List<SystemUser> systemUserList = systemUserMapper.selectList(wrapper);
-        
-        systemUserList.stream().forEach(e -> {
-            e.getUsername();
-        });
-
         return systemUserMapper.selectByStatus(status);
     }
 
@@ -74,9 +59,11 @@ public class SystemUserServiceImpl implements SystemUserService {
     public IPage<SystemUserResponse> getByPage(SystemUserRequest systemUserRequest) {
         // 设置分页
         Page<SystemUserResponse> page = new Page<>(systemUserRequest.getPage(), systemUserRequest.getPageSize());
-        
-        // userMapper.selectByStatus(page, userRequest.getStatus())
-        
         return systemUserMapper.selectByStatus(page, systemUserRequest.getStatus());
+    }
+
+    @Override
+    public SystemUser getByUsername(String username) {
+        return systemUserMapper.selectByUsername(username);
     }
 }

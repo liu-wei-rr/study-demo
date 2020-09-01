@@ -118,4 +118,13 @@ public class GlobalExceptionHandler {
         return new ResponseData.Builder().fail(e.getMessage()).build();
     }
 
+    /**
+     * 登录异常
+     */
+    @ExceptionHandler(LoginException.class)
+    public Object loginException(HttpServletRequest request, LoginException e) {
+        log.error(e.getMessage(), e);
+        return new ResponseData.Builder().fail(e.getMessage()).build();
+    }
+
 }

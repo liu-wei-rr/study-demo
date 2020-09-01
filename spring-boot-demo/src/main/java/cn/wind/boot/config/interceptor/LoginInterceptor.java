@@ -1,9 +1,14 @@
 package cn.wind.boot.config.interceptor;
 
+import cn.wind.boot.common.base.response.ResponseData;
+import cn.wind.boot.common.constant.CacheConstants;
+import cn.wind.boot.common.util.RedisUtil;
+import cn.wind.boot.db.domain.system.response.LoginUser;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2020-08-26
  */
 @Slf4j
-public class LoginInterceptor implements HandlerInterceptor {
+public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+    @Resource
+    private RedisUtil redisUtil;
+    /**
+     * 在业务处理器处理请求之前被调用
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
@@ -24,7 +34,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 如果是 swagger 请求通过
         if (request.getRequestURI().startsWith("/swagger-resources") ||
-                request.getRequestURI().startsWith("/swagger-ui.html")) {
+                request.getRequestURI().startsWith("/swagger-ui.html") ||
+                request.getRequestURI().startsWith("/webjars") || 
+                request.getRequestURI().startsWith("/error")) {
             return true;
         }
 
@@ -43,36 +55,21 @@ public class LoginInterceptor implements HandlerInterceptor {
             log.info("------非法登入(token为空)-----");
             return false;
         } else {
-//            // TODO 从redis获取用户信息
-//            String tokenKey = CacheConstants.WX_USER_TOKEN + token;
-//            boolean exists = redisTemplate.hasKey(tokenKey);
-//            if (exists) {
-//	            LoginUser usersResp = (LoginUser)redisTemplate.opsForValue().get(tokenKey);
-//	            request.setAttribute(Const.LOGIN_USER, usersResp);
-//                return true;
-//            } else {
-//                ResponseData rd = new ResponseData.Builder().error("登录失效，请重新登录!").build();
-//                response.addHeader("Access-Control-Allow-Origin", "*");
-//                response.addHeader("Content-Type", "application/json;charset=UTF-8");
-//                response.getWriter().print(JSONUtil.toJson(rd));
-//                log.info("------非法登入(redis验证token不存在)-----");
-//                return false;
-//            }
+            String tokenKey = CacheConstants.USER_TOKEN + token;
+            boolean exists = redisUtil.hasKey(tokenKey);
+            if (exists) {
+                LoginUser loginUser = (LoginUser)redisUtil.get(tokenKey);
+                request.setAttribute(CacheConstants.USER_ATTRIBUTE_KEY, loginUser);
+                return true;
+            } else {
+                ResponseData rd = new ResponseData.Builder().fail("登录失效，请重新登录!").build();
+                response.addHeader("Access-Control-Allow-Origin", "*");
+                response.addHeader("Content-Type", "application/json;charset=UTF-8");
+                response.getWriter().print(new Gson().toJson(rd));
+                log.info("------非法登入(redis验证token不存在)-----");
+                return false;
+            }
         }
-        return false;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                           ModelAndView modelAndView) throws Exception {
-
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
-
-
     }
 
 }
