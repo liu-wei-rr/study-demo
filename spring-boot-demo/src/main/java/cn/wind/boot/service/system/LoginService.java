@@ -15,5 +15,11 @@ public interface LoginService {
      * @return
      */
     String loginIn(LoginRequest loginRequest);
-    
+
+    /**
+     * 用户登出
+     * 
+     */
+    void loginOut(String token);
+
 }

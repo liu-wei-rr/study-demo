@@ -1,9 +1,5 @@
 package cn.wind.boot.common.util;
 
-import cn.wind.boot.common.constant.CacheConstants;
-
-import java.util.UUID;
-
 /**
  * @author liuw
  * @date 2020-09-01
@@ -16,7 +12,9 @@ public class CodeUtil {
      *
      * @return
      */
-    public static String getUserToken() {
-        return CacheConstants.USER_TOKEN + UUID.randomUUID().toString().replaceAll("-", "");
+    public static String getUserToken(String username) {
+        // md5 加密32位大写
+        return MD5Util.md5Encrypt32Upper(username);
+        
     }
 }

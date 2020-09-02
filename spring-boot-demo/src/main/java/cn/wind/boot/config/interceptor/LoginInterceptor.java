@@ -34,7 +34,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
         // 如果是 swagger 请求通过
         if (request.getRequestURI().startsWith("/swagger-resources") ||
-                request.getRequestURI().startsWith("/swagger-ui.html") ||
+                request.getRequestURI().startsWith("/swagger") ||
                 request.getRequestURI().startsWith("/webjars") || 
                 request.getRequestURI().startsWith("/error")) {
             return true;
@@ -52,13 +52,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
         // 验证redis串号
         if (token == null || "".equals(token)) {
+            ResponseData rd = new ResponseData.Builder().fail("登录失效，请重新登录!").build();
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            response.addHeader("Content-Type", "application/json;charset=UTF-8");
+            response.getWriter().print(new Gson().toJson(rd));
             log.info("------非法登入(token为空)-----");
             return false;
         } else {
-            String tokenKey = CacheConstants.USER_TOKEN + token;
-            boolean exists = redisUtil.hasKey(tokenKey);
+            String loginUserKey = CacheConstants.USER_TOKEN + token;
+            boolean exists = redisUtil.hasKey(loginUserKey);
             if (exists) {
-                LoginUser loginUser = (LoginUser)redisUtil.get(tokenKey);
+                LoginUser loginUser = new Gson().fromJson((String)redisUtil.get(loginUserKey), LoginUser.class);
+                // LoginUser loginUser = (LoginUser)redisUtil.get(loginUserKey);
                 request.setAttribute(CacheConstants.USER_ATTRIBUTE_KEY, loginUser);
                 return true;
             } else {

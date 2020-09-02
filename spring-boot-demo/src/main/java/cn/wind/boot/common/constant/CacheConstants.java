@@ -9,9 +9,9 @@ package cn.wind.boot.common.constant;
 public class CacheConstants {
     
     /**
-     * reids用户token前缀
+     * redis用户token前缀
      */
-    public static final String USER_TOKEN = "USER_TOKEN";
+    public static final String USER_TOKEN = "USER::TOKEN::";
 
     /**
      * 请求用户信息属性key
