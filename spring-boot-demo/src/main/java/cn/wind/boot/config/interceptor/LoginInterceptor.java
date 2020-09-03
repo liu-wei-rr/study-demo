@@ -63,8 +63,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             boolean exists = redisUtil.hasKey(loginUserKey);
             if (exists) {
                 LoginUser loginUser = new Gson().fromJson((String)redisUtil.get(loginUserKey), LoginUser.class);
-                // LoginUser loginUser = (LoginUser)redisUtil.get(loginUserKey);
-                request.setAttribute(CacheConstants.USER_ATTRIBUTE_KEY, loginUser);
+                request.setAttribute(CacheConstants.USER_ATTRIBUTE + token, loginUser);
                 return true;
             } else {
                 ResponseData rd = new ResponseData.Builder().fail("登录失效，请重新登录!").build();

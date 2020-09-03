@@ -16,5 +16,5 @@ public class CacheConstants {
     /**
      * 请求用户信息属性key
      */
-    public static final String USER_ATTRIBUTE_KEY = "LOGIN_USER"; 
+    public static final String USER_ATTRIBUTE = "USER_ATTRIBUTE_"; 
 }
