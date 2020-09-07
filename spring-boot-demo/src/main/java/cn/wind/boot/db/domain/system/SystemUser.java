@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -20,6 +21,7 @@ import java.util.Date;
 @TableName("system_user")
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 public class SystemUser implements Serializable {
 
     private static final long serialVersionUID = 2596059579817014810L;

@@ -47,14 +47,14 @@ public class SystemUserServiceImpl implements SystemUserService {
     public int delete(Long id) {
         return systemUserMapper.deleteById(id);
     }
-
+    
     @Override
     public List<SystemUserResponse> getEffectiveUserList() {
         // 设置用户启用状态
         String status = "1";
         return systemUserMapper.selectByStatus(status);
     }
-
+    
     @Override
     public IPage<SystemUserResponse> getByPage(SystemUserRequest systemUserRequest) {
         // 设置分页

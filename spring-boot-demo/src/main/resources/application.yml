@@ -1,20 +1,19 @@
-# server port
+# 环境配置
 server:
+  # 端口
   port: 9020
   servlet:
+    # 应用的访问路径
     context-path: /
-    
+
+# Spring 配置
 spring:
-  # base info
+  # 基础信息
   application:
     name: spring-boot-demo
-
-  # datasource config
-  datasource:
-    url: jdbc:mysql://101.201.254.58:3306/management?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
-    password: 1qazXSW@
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  # 激活配置
+  profiles:
+    active: druid
 
   # security config 【spring boot 需要引入对应依赖生效】
   security:
