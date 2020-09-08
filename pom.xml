@@ -31,6 +31,7 @@
     <!-- 模块 -->
     <modules>
         <module>spring-boot-demo</module>
+        <module>component</module>
     </modules>
 
     <!-- 构建 -->
