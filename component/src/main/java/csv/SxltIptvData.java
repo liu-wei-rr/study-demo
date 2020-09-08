@@ -1,6 +1,6 @@
 package csv;
 
-import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
 
 /**
  * @author liuw
@@ -8,7 +8,26 @@ import com.opencsv.bean.CsvBindByName;
  */
 public class SxltIptvData {
 
-    @CsvBindByName(column = "user_account")
+    @CsvBindByPosition(position = 0)
+    private String user_account;
+    @CsvBindByPosition(position = 1)
+    private String mac_address;
+    @CsvBindByPosition(position = 2)
+    private String city_info;
+    @CsvBindByPosition(position = 3)
+    private String customer_name;
+    @CsvBindByPosition(position = 4)
+    private String contact_number;
+    @CsvBindByPosition(position = 5)
+    private String address;
+    @CsvBindByPosition(position = 6)
+    private String operation_code;
+    @CsvBindByPosition(position = 7)
+    private String extend_field1;
+    @CsvBindByPosition(position = 8)
+    private String extend_field2;
+
+    /*@CsvBindByName(column = "user_account")
     private String user_account;
     @CsvBindByName(column = "mac_address")
     private String mac_address;
@@ -25,7 +44,7 @@ public class SxltIptvData {
     @CsvBindByName(column = "extend_field1")
     private String extend_field1;
     @CsvBindByName(column = "extend_field2")
-    private String extend_field2;
+    private String extend_field2;*/
 
     public String getUser_account() {
         return user_account;

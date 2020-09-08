@@ -18,7 +18,7 @@ public class Test {
         try {
             InputStreamReader in = new InputStreamReader(new FileInputStream(path), "utf-8");
             if (null != in) {
-                List<SxltIptvData> sxltIptvDataList = csvUtil.getCsvData(in, SxltIptvData.class);
+                List<SxltIptvData> sxltIptvDataList = csvUtil.toBeanByPosition(in, SxltIptvData.class);
                 sxltIptvDataList.stream().forEach(e -> {
                     System.out.println(e.toString());
                 }); 
