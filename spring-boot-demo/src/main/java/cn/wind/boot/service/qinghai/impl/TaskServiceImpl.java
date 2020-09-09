@@ -9,8 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liuw
@@ -25,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     
     @DS("slave")
     @Override
-    public HashMap<String, Object> getIptvDailyData(IptvDailyDataRequest request) {
+    public Map<String, Object> getIptvDailyData(IptvDailyDataRequest request) {
         String date = request.getDate() + " 23:59:59";
         List<IptvDailyDataResponse> iptvDailyDataList = iptvDailyDataMapper.countIptvDailyData(date);
         
@@ -53,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
         }
         
         // 封装结果
-        HashMap<String, Object> result = new HashMap<>();
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         result.put("日期", request.getDate());
         result.put("优品会员到达", yp);
         result.put("教育优品会员到达", jy);

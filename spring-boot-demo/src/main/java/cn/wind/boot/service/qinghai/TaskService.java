@@ -2,7 +2,7 @@ package cn.wind.boot.service.qinghai;
 
 import cn.wind.boot.db.domain.qinghai.request.IptvDailyDataRequest;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 任务Controller
@@ -17,6 +17,6 @@ public interface TaskService {
      *
      * @param request
      */
-    public HashMap<String, Object> getIptvDailyData(IptvDailyDataRequest request);
+    public Map<String, Object> getIptvDailyData(IptvDailyDataRequest request);
 
 }
