@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wind.boot.db.mapper.qinghai.IptvDailyDataMapper">
+
+	<resultMap id="BaseResultMap" type="cn.wind.boot.db.domain.qinghai.response.IptvDailyDataResponse" >
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="countIptvDailyData" resultMap="BaseResultMap">
+		SELECT
+		count(*) AS 'amount',
+		'影视其他' AS 'type'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN (
+		'370322301500',
+		'270134420000',
+		'270134302000',
+		'270102909900',
+		'270102805900',
+		'261137300900',
+		'261136302500',
+		'260912929900',
+		'260912815900',
+		'260912305900',
+		'260706915800',
+		'260125629900',
+		'260125303900',
+		'260103909900',
+		'260103805900'
+		)
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'影视-优酷-介质'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '340115909900', '340115805900', '340115418900', '340115302000' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'影视-爱奇艺-介质'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '320113909900', '320113805900', '320113302000', '320113418900' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'体育'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '420830918900', '420830809900', '420830429900', '420830303900', '260811918900', '260811809900', '260138305900' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'游戏'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '440332911900', '440332806900', '440332419900', '440332302500', '400328915800', '400328807900', '400328429900', '400328302900', '370320301500' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'音乐'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '460235909900', '460235805900', '460235418900', '460235302000', '370221301000', '350216909900', '350216805900', '350216418900', '350216302000' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'生活-其他'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '360419915800', '360419807900', '360419429900', '360419302900', '360418915800', '360418807900', '360418429900', '360418302900', '300708915800', '300708807900', '300708429900', '3002012029' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'生活-健康'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN ( '310409915800', '310409807900', '310402420000', '310401202500', '2601132020' )
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1} UNION ALL
+		SELECT
+		count(*),
+		'教育'
+		FROM
+		t_rh_order
+		WHERE
+		prod_id IN (
+		'500513918900',
+		'500513809900',
+		'500513429900',
+		'500513303900',
+		'430731915800',
+		'430731807900',
+		'430731429900',
+		'430731302900',
+		'410729915800',
+		'410729807900',
+		'410729429900',
+		'410729302900',
+		'380726915800',
+		'380726807900',
+		'380726429900',
+		'380726302900',
+		'371023301000',
+		'370724301900',
+		'360717915800',
+		'360717807900',
+		'360717429900',
+		'360717302900',
+		'300707915800',
+		'300707807900',
+		'300707429900',
+		'3001012029',
+		'260706807900',
+		'260705915800',
+		'260705807900',
+		'260705429900',
+		'260705302900',
+		'260510918900',
+		'260510809900',
+		'260510429900',
+		'260510303900',
+		'2601082020',
+		'2601072020',
+		'2601052020',
+		'2601042030'
+		)
+		AND OrderTime &lt; #{param1} AND ValidEnd &gt; #{param1};
+    </select>
+	
+</mapper>

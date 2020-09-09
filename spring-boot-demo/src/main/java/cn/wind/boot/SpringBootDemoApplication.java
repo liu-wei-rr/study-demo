@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @Slf4j
 @EnableCaching // 开启缓存
-@SpringBootApplication
+@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 @MapperScan("cn.wind.boot.db.mapper.*")
 public class SpringBootDemoApplication {
     

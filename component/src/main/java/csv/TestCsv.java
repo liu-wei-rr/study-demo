@@ -10,7 +10,7 @@ import java.util.List;
  * @author liuw
  * @date 2020/9/8
  */
-public class Test {
+public class TestCsv {
 
     public static void main(String[] args) throws FileNotFoundException {
         CsvUtil csvUtil = new CsvUtil();
@@ -21,7 +21,7 @@ public class Test {
                 List<SxltIptvData> sxltIptvDataList = csvUtil.toBeanByPosition(in, SxltIptvData.class);
                 sxltIptvDataList.stream().forEach(e -> {
                     System.out.println(e.toString());
-                }); 
+                });
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

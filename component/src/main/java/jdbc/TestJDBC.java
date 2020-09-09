@@ -9,7 +9,7 @@ import java.sql.Statement;
  * @author liuw
  * @date 2020/9/7
  */
-public class Test {
+public class TestJDBC {
 
     public static void main(String[] args) throws Exception {
         // 用户名
@@ -27,7 +27,7 @@ public class Test {
         // 执行sql，获得结果集
         ResultSet rs = statement.executeQuery("select * from system_user ");
         // 遍历结果集
-        while(rs.next()) {
+        while (rs.next()) {
             String username1 = rs.getString(1);
             String password1 = rs.getString(2);
             System.out.println(username1 + ", " + password1);

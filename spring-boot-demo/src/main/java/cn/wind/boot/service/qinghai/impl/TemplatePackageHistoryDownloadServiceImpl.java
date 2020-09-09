@@ -3,6 +3,7 @@ package cn.wind.boot.service.qinghai.impl;
 import cn.wind.boot.db.domain.qinghai.TemplatePackageHistoryDownload;
 import cn.wind.boot.db.mapper.qinghai.TemplatePackageHistoryDownloadMapper;
 import cn.wind.boot.service.qinghai.TemplatePackageHistoryDownloadService;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,9 @@ public class TemplatePackageHistoryDownloadServiceImpl implements TemplatePackag
     @Resource
     private TemplatePackageHistoryDownloadMapper tempMapper;
     
+    @DS("slave")
     @Override
     public TemplatePackageHistoryDownload getById(Long id) {
-        TemplatePackageHistoryDownload t = new TemplatePackageHistoryDownload();
-        t.setID(1L);
-        return t;
+        return tempMapper.selectById(id);
     }
 }
