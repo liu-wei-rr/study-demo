@@ -23,6 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Resource
     private RedisUtil redisUtil;
+    
     /**
      * 在业务处理器处理请求之前被调用
      */
@@ -35,7 +36,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         // 如果是 swagger 请求通过
         if (request.getRequestURI().startsWith("/swagger-resources") ||
                 request.getRequestURI().startsWith("/swagger") ||
-                request.getRequestURI().startsWith("/webjars") || 
+                request.getRequestURI().startsWith("/webjars") ||
                 request.getRequestURI().startsWith("/error")) {
             return true;
         }
@@ -62,7 +63,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             String loginUserKey = CacheConstants.USER_TOKEN + token;
             boolean exists = redisUtil.hasKey(loginUserKey);
             if (exists) {
-                LoginUser loginUser = new Gson().fromJson((String)redisUtil.get(loginUserKey), LoginUser.class);
+                LoginUser loginUser = new Gson().fromJson((String) redisUtil.get(loginUserKey), LoginUser.class);
                 request.setAttribute(CacheConstants.USER_ATTRIBUTE + token, loginUser);
                 return true;
             } else {

@@ -24,6 +24,18 @@ import java.util.List;
 public class Swagger2Config {
 
     @Bean
+    public Docket createTestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("测试")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("cn.wind.boot.controller.test"))
+                .paths(PathSelectors.any())
+                .build()
+                .globalOperationParameters(getParameterList());
+    }
+
+    @Bean
     public Docket createSystemApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
